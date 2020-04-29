@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'product-list-one',
@@ -19,14 +21,16 @@ export default {
     products(){
       return this.$store.state.products
     },
-    saleProducts(){
-      return this.$store.getters.saleProducts
-    }
+    ...mapGetters([
+      'saleProducts',
+      'getterFromStore'
+    ])
   },
   methods:{
-    reducePrice(amount){
-      this.$store.dispatch('reducePrice', amount)
-    }
+    ...mapActions([
+      'reducePrice',
+      'actionsFromStore'
+    ])
   }
 }
 </script>
